@@ -10,20 +10,21 @@
 GET /objects?fields=name,author(age)&search[author.age]=18;30&sort=-name&limi=10&skip=0&lang=ru
 ```
 
-Формат имеет минимальную![v1](v1.png) и полноценную версию![v2](v2.png) для реализации.
+Формат имеет минимальную![v1](v1.png) версию и расширенные ![v2](v2.png) ![v3](v3.png).
 При частичной реализации опций второй версии, указывается первая версия с перечислением номеров
 опций, например `QueryREST v1.fields-5.7.search-3.4.5`. Если реализуются не все опции первой 
 версии, то указывается нулевая версия формата.
 
-- __[`fields`](#fields)__ - выбираемые данные.
+__[`fields`](fields.md)__ - что выбрать.
   1. [Свойства по умолчанию](fields.md)![v1](v1.png)
   2. [Все свойства](fields.md)![v1](v1.png) - `*`
   3. [Выборочные свойства](fields.md)![v1](v1.png)   - `prop1, prop2(prop3)`
-  4. [Свойства списка](fields.md)![v1](v1.png) - `items(prop1), count`
+  4. [Свойства списка](fields.md)![v2](v2.png) - `items(prop1), count`
   5. [Исключение свойства](fields.md)![v2](v2.png) - `!prop1` 
-  6. [Зависимость от типа объекта](fields.md)![v2](v2.png) - `id, author(name, manager:rating)`
-  7. [Рекурсивные шаблоны](fields.md)![v2](v2.png)  - `comments(text, children(^))`
-- __[`search`](#search)__ - условия выборки.
+  6. [Зависимость от типа объекта](fields.md)![v3](v3.png) - `id, author(name, manager:rating)`
+  7. [Рекурсивные шаблоны](fields.md)![v3](v3.png)  - `comments(text, children(^))`
+  
+__[`search`](#search)__ - условия выборки.
   1. [Равенство значению](search.md)![v1](v1.png) - `search[prop1]=value`
   2. [Вхождение в строку](search.md)![v2](v2.png) - `search[prop1]=*value`
   3. [Вхождение с сначала строки](search.md)![v2](v2.png) - `search[prop1]=^value`
@@ -32,31 +33,42 @@ GET /objects?fields=name,author(age)&search[author.age]=18;30&sort=-name&limi=10
   6. [Равенство значению со спец. символами](search.md)![v2](v2.png) - `search[prop1]="value-with!~^*<>;|`
   7. [Больше, меньше значения](search.md)![v2](v2.png) - `search[prop1]=>value`, `search[prop1]=<value`
   8. [Больше или равно, меньше или равно](search.md)![v2](v2.png) - `search[prop1]=>>value`, `search[prop1]=<<value`
-  9. [Диапазон значений](search.md)![v1](v1.png) - `search[prop1]=min;max`
+  9. [Диапазон значений](search.md)![v2](v2.png) - `search[prop1]=min;max`
   10. [Интервал значений](search.md)![v2](v2.png) - `search[prop1]=min~max`
-  11. [Отсутствие свойства или значения](search.md)![v1](v1.png) `search[prop1]=null`
+  11. [Отсутствие свойства или значения](search.md)![v2](v2.png) `search[prop1]=null`
   12. [Выполнение любого условия](search.md)![v2](v2.png) - `search[prop1]=exp1|exp2`
   13. [Выполнение всех условий](search.md)![v2](v2.png) - `search[prop1]=exp1&exp2`
   14. [Множество любых условий]()![v2](v2.png) - `search[prop1]=value1|min2;max2|min3~max3|!value4|*value5|^value6|null`   
-  15. [Условие на вложенное свойство](search.md)![v1](v1.png) - `search[prop1.prop2]=value`
-  16. [Условие на свойство в неопредленной вложенности]()![v2](v2.png) - `search[prop1..parent.title]=value`
-  17. [Условие вывода свойства prop1](search.md)![v2](v2.png) - `search.prop1[prop2]=value`
-- __[`sort`](#sort)__ - сортировка.
-  * [По убванию]()![v1](v1.png) - `sort=-name`
-  * [По нескольким свойствам]()![v1](v1.png) - `sort=-name,date`
-  * [По вложенным свойствам]()![v1](v1.png) - `sort=contacts.address.street`
-  * [Сортировка в множественном свойстве]()![v2](v2.png) - `sort.contacts=address.street`
-- __[`limit`](#limit-skip)__ - ограничение количества объектов в списке.
-- __[`skip`](#limit-skip)__ - с какой позиции вернуть ограниченное количество объектов.
-- __[`depth`](#depth)__ - ограничение вложенности рекурсивных выборок.
-- __[`lang`](#lang-unit-version)__ - язык для i18n свойств.
-  * [Язык для всех свойств]()![v1](v1.png) `lang=en`
-  * [Языка для одного свойства]()![v2](v2.png) - `lang.title=en`
-  * [Все варинты языков]()![v2](v2.png) - `lang=*`,
-  * [Несколько языков]()![v2](v2.png) - `lang=ru,en`
-- __[`unit`](#lang-unit-version)__ - валюта для свойств цены, стоимости.
-- __[`version`](#lang-unit-version)__ - версия изменений объекта/свойства.
-- __[Сложные запросы]()__
+  15. [Условие по вложенному свойству](search.md)![v1](v1.png) - `search[prop1.prop2]=value`
+  16. [Условие по свойству в неопредленной вложенности]()![v3](v3.png) - `search[prop1..parent.title]=value`
+  17. [Условие вывода свойства prop1](search.md)![v3](v3.png) - `search.prop1[prop2]=value`
+  
+__[`sort`](#sort)__ - сортировка.
+  1. [По убванию]()![v1](v1.png) - `sort=-name`
+  2. [По нескольким свойствам]()![v1](v1.png) - `sort=-name,date`
+  3. [По вложенным свойствам]()![v1](v1.png) - `sort=contacts.address.street`
+  4. [Сортировка в множественном свойстве]()![v3](v3.png) - `sort.contacts=address.street`
+  
+__[`limit`](#limit-skip)__ - ограничение количества.
+  1. [По умолчанию]()![v1](v1.png)
+  2. [Не больше указанного]()![v1](v1.png) - `limit=10`
+  3. [В множественом свойстве]()![v3](v3.png) - `limit.comments=10`
+
+__[`skip`](#limit-skip)__ - с какой позиции ограниченное количество.
+  1. [С указанной]()![v1](v1.png) - `skip=10`
+  2. [В множественом свойстве]()![v3](v3.png) - `skip.comments=10`
+  
+__[`depth`](#depth)__ - ограничение вложенности.
+  1. [По умолчанию]()![v3](v3.png)
+  2. [Для свойства]()![v3](v3.png) - `depth.parent=10`
+
+__[`lang`](#lang-unit-version)__ - язык при мультиязычности.
+  1. [Для всех свойств]()![v2](v2.png) `lang=en`
+  2. [Все варинты языков]()![v2](v2.png) - `lang=*`
+  3. [Несколько языков]()![v3](v2.png) - `lang=ru,en`
+  4. [Для одного свойства]()![v3](v3.png) - `lang.title=en`
+
+[Сложные запросы]()
 
 ## fields
 
@@ -190,7 +202,7 @@ lang.stores.title=ru  // язык для заголовка магазинов
 {
    "title": {
      "ru": "Заголвоок",
-     "en": "Title"
+     "en": "Title",
      "it": "Testata"
    }
 }
