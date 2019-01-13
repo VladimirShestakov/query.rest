@@ -17,27 +17,27 @@ __Запрос__
   * [Зависимость от типа объекта](#fields--proptype1prop1-type2prop2)![v3](v3.png) - `prop(type1:prop1, type2:prop2)`
   * [Рекурсивные шаблоны](#fields--commentstext-children)![v3](v3.png)  - `comments(text, children(^))`
 * __[`search`](#search)__ - условие выборки.
-  * [Равенство значению](#search)![v1](v1.png) - `search[prop1]=value` 
-  * [Вхождение в строку](#search)![v2](v2.png) - `search[prop1]=*value` 
-  * [Вхождение с сначала строки](#search)![v2](v2.png) - `search[prop1]=^value` 
-  * [Полнотекстовый поиск](#search)![v2](v2.png) - `search[prop1]=~value` 
-  * [Регулярное выражение](#search)![v2](v2.png) - `search[prop1]=/value/` 
-  * [Неравенство значению](#search)![v2](v2.png) - `search[prop1]=!value` 
-  * [Равенство значению со спец. символами](#search)![v2](v2.png) - `search[prop1]="value-with!~^*<>;|` 
-  * [Больше, меньше значения](#search)![v2](v2.png) - `search[prop1]=>value`, `search[prop1]=<value`  
-  * [Больше или равно, меньше или равно](#search)![v2](v2.png) - `search[prop1]=>>value`, `search[prop1]=<<value` 
-  * [Диапазон значений](#search)![v2](v2.png) - `search[prop1]=min;max` 
-  * [Интервал значений](#search)![v2](v2.png) - `search[prop1]=min~max` 
-  * [Вне диапазона значений](#search)![v2](v2.png) - `search[prop1]=!min;max` 
-  * [Вне интервала значений](#search)![v2](v2.png) - `search[prop1]=!min~max` 
-  * [Отсутствие свойства или значения](#search)![v2](v2.png) `search[prop1]=null` 
-  * [Выполнение любого условия](#search)![v2](v2.png) - `search[prop1]=exp1|exp2` 
-  * [Выполнение всех условий](#search)![v2](v2.png) - `search[prop1]=exp1&exp2` 
-  * [Не выполнение любого условия](#search)![v2](v2.png) - `search[prop1]=!exp1|!exp2` 
-  * [Не выполнение всех условий](#search)![v2](v2.png) - `search[prop1]=!exp1&!exp2` 
-  * [Условие по вложенному свойству](#search)![v1](v1.png) - `search[prop1.prop2]=value` 
-  * [Условие по свойству в неопределенной вложенности](#search)![v3](v3.png) - `search[prop1..parent.title]=value`
-  * [Условие фильтрации свойства](#search)![v3](v3.png) - `search.prop1[prop2]=value`
+  * [Равенство значению](#searchprop1--value)![v1](v1.png) - `search[prop]=value` 
+  * [Вхождение в строку](#searchprop2--value)![v2](v2.png) - `search[prop]=*value` 
+  * [Вхождение с сначала строки](#searchprop3--value)![v2](v2.png) - `search[prop]=^value` 
+  * [Полнотекстовый поиск](#searchprop4--value)![v2](v2.png) - `search[prop]=~value` 
+  * [Регулярное выражение](#searchprop5--value)![v2](v2.png) - `search[prop]=/value/` 
+  * [Неравенство значению](#searchprop6--value)![v2](v2.png) - `search[prop]=!value` 
+  * [Равенство значению со спец. символами](#searchprop7--value-with)![v2](v2.png) - `search[prop]="value-with!~^*<>;|` 
+  * [Больше, меньше значения](#searchprop8--value-searchprop--value)![v2](v2.png) - `search[prop]=>value`, `search[prop]=<value`  
+  * [Больше или равно, меньше или равно](#searchprop9--value-searchprop--value)![v2](v2.png) - `search[prop]=>>value`, `search[prop]=<<value` 
+  * [Диапазон значений](#searchprop10--minmax)![v2](v2.png) - `search[prop]=min;max` 
+  * [Интервал значений](#searchprop11--minmax)![v2](v2.png) - `search[prop]=min~max` 
+  * [Вне диапазона значений](#searchprop12--minmax)![v2](v2.png) - `search[prop]=!min;max` 
+  * [Вне интервала значений](#searchprop13--minmax)![v2](v2.png) - `search[prop]=!min~max` 
+  * [Отсутствие свойства или значения](#searchprop14--null)![v2](v2.png) `search[prop]=null` 
+  * [Выполнение любого условия](#searchprop15--exp1exp2)![v2](v2.png) - `search[prop]=exp1|exp2` 
+  * [Выполнение всех условий](#searchprop16--exp1exp2)![v2](v2.png) - `search[prop]=exp1&exp2` 
+  * [Не выполнение любого условия](#searchprop17--exp1exp2)![v2](v2.png) - `search[prop]=!exp1|!exp2` 
+  * [Не выполнение всех условий](#searchprop18--exp1exp2)![v2](v2.png) - `search[prop]=!exp1&!exp2` 
+  * [Условие по вложенному свойству](#searchprop1prop2--value)![v1](v1.png) - `search[prop1.prop2]=value` 
+  * [Условие по свойству в неопределенной вложенности](#searchprop1parentprop3--value)![v3](v3.png) - `search[prop1..parent.prop3]=value`
+  * [Условие фильтрации свойства](#searchprop1prop--value)![v3](v3.png) - `search.prop1[prop]=value`
 * __[`sort`](#sort)__ - сортировка.
   * [По одному полю](#sort--prop)![v1](v1.png) - `sort=prop`
   * [Обратная сортировка](#sort---prop)![v1](v1.png) - `sort=-prop`
@@ -349,6 +349,49 @@ search.stores[title]=*Magnit  // Магазины отфильтровать п�
 запрашиваемых объектов. В квадратных скобках указывается свойство (или виртуальное поле), по 
 которому будет сформировно условие фильтра.
 
+#### `search[prop1] = value`
+
+#### `search[prop2] = *value`
+
+#### `search[prop3] = ^value`
+
+#### `search[prop4] = ~value`
+
+#### `search[prop5] = /value/`
+
+#### `search[prop6] = !value`
+
+#### `search[prop7] = "value-with!~^*<>;|`
+
+#### `search[prop8] = >value`, `search[prop] = <value`
+
+#### `search[prop9] = >>value`, `search[prop] = <<value`
+
+#### `search[prop10] = min;max`
+
+#### `search[prop11] = min~max`
+
+#### `search[prop12] = !min;max`
+
+#### `search[prop13] = !min~max`
+
+#### `search[prop14] = null`
+
+#### `search[prop15] = exp1|exp2`
+
+#### `search[prop16] = exp1&exp2`
+
+#### `search[prop17] = !exp1|!exp2`
+
+#### `search[prop18] = !exp1&!exp2`
+
+#### `search[prop1.prop2] = value`
+
+#### `search[prop1..parent.prop3] = value`
+
+#### `search.prop1[prop] = value`
+
+
 # `sort`
 
 Сортировка списков.
@@ -357,7 +400,7 @@ search.stores[title]=*Magnit  // Магазины отфильтровать п�
 
 #### `sort = prop` 
 
-Сортировка по одному свойству по возрастанию. Указывается название свойства. Напрвление 
+Сортировка по одному свойству по возрастанию. Указывается название свойства. Направление 
 сортировки может задавать сервер.
 
 #### `sort = -prop`
@@ -427,7 +470,7 @@ limit.comments=10
 Позиция, с которой вернуть ограниченное количество объектов в списке.
 По умолчанию `skip` равен нулю, сервер возвращает список начиная с первого объекта.
 
-> Альтернативные названия: offset, seek
+> Альтернативные названия: offset, seek, position
 
 #### `skip = 10`
 
