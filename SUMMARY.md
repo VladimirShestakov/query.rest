@@ -2,7 +2,7 @@
 
 ---
 
-* [Запрос](README.md#запрос)
+* [Запрос](README.md#request)
   * [Данные](README.md#fields)
   * [Условие](README.md#search)
   * [Сортировка](README.md#sort)
@@ -10,6 +10,6 @@
   * [Сдвиг](README.md#skip)
   * [Глубина](README.md#depth)
   * [Язык](README.md#lang)
-* [Ответ](README.md#ответ)
-  * [Результат](README.md#ответ)
-  * [Ошибки](README.md#ошибки)
+* [Ответ](README.md#response)
+  * [Результат](README.md#response-one)
+  * [Ошибки](README.md#response-error)

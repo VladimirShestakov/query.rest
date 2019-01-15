@@ -9,70 +9,69 @@
 
 __Запрос__
 * __[`fields`](#fields)__ — запрашиваемые данные.
-  * [По умолчанию](#fields)![v1](v1.png)
-  * [Все свойства](#fields--)![v1](v1.png)&ensp; `*`
-  * [Выборочные свойства](#fields--prop1-prop2prop3)![v1](v1.png)&ensp; `prop1, prop2(prop3)`
-  * [Свойства списка](#fields--itemsprop-count)![v2](v2.png)&ensp; `items(prop), count`
-  * [Исключение свойств](#fields--prop)![v3](v3.png)&ensp; `!prop` 
-  * [Зависимость от типа объекта](#fields--proptype1prop1-type2prop2)![v3](v3.png)&ensp; `prop(type1:prop1, type2:prop2)`
-  * [Рекурсивные шаблоны](#fields--commentstext-children)![v3](v3.png)&ensp; `comments(text, children(^))`
+  * [По умолчанию](#fields-default)![v1](v1.png)
+  * [Все свойства](#fields-all)![v1](v1.png)&ensp; `*`
+  * [Выборочные свойства](#fields-map)![v1](v1.png)&ensp; `prop1, prop2(prop3)`
+  * [Свойства списка](#fields-list)![v2](v2.png)&ensp; `items(prop), count`
+  * [Исключение свойств](#fields-deny)![v3](v3.png)&ensp; `!prop` 
+  * [Зависимость от типа объекта](#fields-types)![v3](v3.png)&ensp; `prop(type1:prop1, type2:prop2)`
+  * [Рекурсивные шаблоны](#fields-recursive)![v3](v3.png)&ensp; `comments(text, children(^))`
 * __[`search`](#search)__ — условие выборки.
-  * [Равенство значению](#searchprop1--value)![v1](v1.png)&ensp; `search[prop]=value` 
-  * [Вхождение в строку](#searchprop2--value)![v2](v2.png)&ensp; `search[prop]=*value` 
-  * [Вхождение с сначала строки](#searchprop3--value)![v2](v2.png)&ensp; `search[prop]=^value` 
-  * [Полнотекстовый поиск](#searchprop4--value)![v2](v2.png)&ensp; `search[prop]=~value` 
-  * [Регулярное выражение](#searchprop5--value)![v2](v2.png)&ensp; `search[prop]=/value/` 
-  * [Неравенство значению](#searchprop6--value)![v2](v2.png)&ensp; `search[prop]=!value` 
-  * [Равенство значению со спец. символами](#searchprop7--value-with)![v2](v2.png)&ensp; `search[prop]="value-with!~^*<>;|` 
-  * [Больше, меньше](#searchprop8--value-searchprop--value)![v2](v2.png)&ensp; `search[prop]=>value`,&ensp; `search[prop]=<value`  
-  * [Больше или равно, меньше или равно](#searchprop9--value-searchprop--value)![v2](v2.png)&ensp; `search[prop]=>>value`,&ensp; `search[prop]=<<value` 
-  * [Диапазон значений](#searchprop10--minmax)![v2](v2.png)&ensp; `search[prop]=min;max` 
-  * [Интервал значений](#searchprop11--minmax)![v2](v2.png)&ensp; `search[prop]=min~max` 
-  * [Вне диапазона значений](#searchprop12--minmax)![v2](v2.png)&ensp; `search[prop]=!min;max` 
-  * [Вне интервала значений](#searchprop13--minmax)![v2](v2.png)&ensp; `search[prop]=!min~max` 
-  * [Отсутствие свойства или значения](#searchprop14--null)![v2](v2.png)&ensp; `search[prop]=null` 
-  * [Выполнение любого условия](#searchprop15--exp1exp2)![v2](v2.png)&ensp; `search[prop]=exp1|exp2` 
-  * [Выполнение всех условий](#searchprop16--exp1exp2)![v2](v2.png)&ensp; `search[prop]=exp1&exp2` 
-  * [Не выполнение любого условия](#searchprop17--exp1exp2)![v2](v2.png)&ensp; `search[prop]=!exp1|!exp2` 
-  * [Не выполнение всех условий](#searchprop18--exp1exp2)![v2](v2.png)&ensp; `search[prop]=!exp1&!exp2` 
-  * [Условие по вложенному свойству](#searchprop1prop2--value)![v1](v1.png)&ensp; `search[prop1.prop2]=value` 
-  * [Условие по свойству в неопределенной вложенности](#searchprop1parentprop3--value)![v3](v3.png)&ensp; `search[prop1..parent.prop3]=value`
-  * [Условие фильтрации свойства](#searchprop1prop--value)![v3](v3.png)&ensp; `search.prop1[prop]=value`
+  * [Равенство значению](#search-eq)![v1](v1.png)&ensp; `search[prop]=value` 
+  * [Вхождение в строку](#search-text-in)![v2](v2.png)&ensp; `search[prop]=*value` 
+  * [Вхождение с сначала строки](#search-text-start)![v2](v2.png)&ensp; `search[prop]=^value` 
+  * [Полнотекстовый поиск](#search-fulltext)![v2](v2.png)&ensp; `search[prop]=~value` 
+  * [Регулярное выражение](#search-regex)![v2](v2.png)&ensp; `search[prop]=/value/` 
+  * [Неравенство значению](#search-not)![v2](v2.png)&ensp; `search[prop]=!value` 
+  * [Равенство значению со спец. символами](#search-eq-strict)![v2](v2.png)&ensp; `search[prop]="value-with!~^*<>;|` 
+  * [Больше, меньше](#search-more-less)![v2](v2.png)&ensp; `search[prop]=>value`,&ensp; `search[prop]=<value`  
+  * [Больше или равно, меньше или равно](#search-more-less-eq)![v2](v2.png)&ensp; `search[prop]=>>value`,&ensp; `search[prop]=<<value` 
+  * [Диапазон значений](#search-range)![v2](v2.png)&ensp; `search[prop]=min;max` 
+  * [Интервал значений](#search-interval)![v2](v2.png)&ensp; `search[prop]=min~max` 
+  * [Вне диапазона значений](#search-not-range)![v2](v2.png)&ensp; `search[prop]=!min;max` 
+  * [Вне интервала значений](#search-not-interval)![v2](v2.png)&ensp; `search[prop]=!min~max` 
+  * [Отсутствие свойства или значения](#search-null)![v2](v2.png)&ensp; `search[prop]=null` 
+  * [Выполнение любого условия](#search-or)![v2](v2.png)&ensp; `search[prop]=exp1|exp2` 
+  * [Выполнение всех условий](#search-and)![v2](v2.png)&ensp; `search[prop]=exp1&exp2` 
+  * [Не выполнение любого условия](#search-or-not)![v2](v2.png)&ensp; `search[prop]=!exp1|!exp2` 
+  * [Не выполнение всех условий](#search-and-not)![v2](v2.png)&ensp; `search[prop]=!exp1&!exp2` 
+  * [Условие по вложенному свойству](#search-path)![v1](v1.png)&ensp; `search[prop1.prop2]=value` 
+  * [Условие фильтрации свойства](#search-field)![v3](v3.png)&ensp; `search.prop1[prop]=value`
 * __[`sort`](#sort)__ — сортировка.
-  * [По одному полю](#sort--prop)![v1](v1.png)&ensp; `sort=prop`
-  * [Обратная сортировка](#sort---prop)![v1](v1.png)&ensp; `sort=-prop`
-  * [По вложенному свойству](#sort--prop1prop2prop3)![v1](v1.png)&ensp; `sort=prop1.prop2.prop3`
-  * [По нескольким свойствам](#sort---prop1-prop2)![v2](v2.png)&ensp; `sort=-prop1, prop2`
-  * [Сортировка в множественном свойстве](#sortprop1--prop2prop3)![v3](v3.png)&ensp; `sort.prop1 = prop2.prop3`
+  * [По одному полю](#sort-asc)![v1](v1.png)&ensp; `sort=prop`
+  * [Обратная сортировка](#sort-desc)![v1](v1.png)&ensp; `sort=-prop`
+  * [По вложенному свойству](#sort-path)![v1](v1.png)&ensp; `sort=prop1.prop2.prop3`
+  * [По нескольким свойствам](#sort-many)![v2](v2.png)&ensp; `sort=-prop1, prop2`
+  * [Сортировка в множественном свойстве](#sort-field)![v3](v3.png)&ensp; `sort.prop1 = prop2`
 * __[`limit`](#limit)__ — ограничение количества.
-  * [По умолчанию](#limit-)![v1](v1.png)
-  * [Не больше указанного](#limit--10)![v1](v1.png)&ensp; `limit=10`
-  * [Без ограничений](#limit--)![v2](v2.png)&ensp; `limit=*`
-  * [В множественом свойстве](#limitprop--10)![v3](v3.png)&ensp; `limit.prop=10`
+  * [По умолчанию](#limit-default)![v1](v1.png)
+  * [Не больше указанного](#limit-number)![v1](v1.png)&ensp; `limit=10`
+  * [Без ограничений](#limit-infinity)![v2](v2.png)&ensp; `limit=*`
+  * [В множественом свойстве](#limit-field)![v3](v3.png)&ensp; `limit.prop=10`
 * __[`skip`](#skip)__ — с какой позиции ограниченное количество.
-  * [С указанной](#skip--10)![v1](v1.png)&ensp; `skip=10`
-  * [В множественом свойстве](#skipprop--10)![v3](v3.png)&ensp; `skip.prop=10`
+  * [С указанной](#skip-number)![v1](v1.png)&ensp; `skip=10`
+  * [В множественом свойстве](#skip-field)![v3](v3.png)&ensp; `skip.prop=10`
 * __[`depth`](#depth)__ — ограничение вложенности.
-  * [По умолчанию](#depth-)![v3](v3.png)
-  * [Не больше указанного](#depthprop--10)![v3](v3.png)&ensp; `depth.prop=10`
-  * [Без ограничений](#depthprop--)![v3](v3.png)&ensp; `depth.prop=*`
+  * [По умолчанию](#depth-default)![v3](v3.png)
+  * [Не больше указанного](#depth-field)![v3](v3.png)&ensp; `depth.prop=10`
+  * [Без ограничений](#depth-infinity)![v3](v3.png)&ensp; `depth.prop=*`
 * __[`lang`](#lang)__ — язык при мультиязычности.
-  * [По умолчанию](#lang-)![v2](v2.png)
-  * [Для всех свойств](#lang--en)![v2](v2.png)&ensp; `lang=en`
-  * [Все варинты языков](#lang--)![v2](v2.png)&ensp; `lang=*`
-  * [Несколько языков](#lang--en-ru)![v3](v3.png)&ensp; `lang=en, ru`
-  * [Для одного свойства](#langprop--en)![v3](v3.png)&ensp; `lang.prop=en`
+  * [По умолчанию](#lang-default)![v2](v2.png)
+  * [Для всех свойств](#lang-set)![v2](v2.png)&ensp; `lang=en`
+  * [Все варинты языков](#lang-all)![v2](v2.png)&ensp; `lang=*`
+  * [Несколько языков](#lang-enum)![v3](v3.png)&ensp; `lang=en, ru`
+  * [Для одного свойства](#lang-field)![v3](v3.png)&ensp; `lang.prop=en`
 
 __Ответ__
-* __[`result`](#ответ)__ — успешный результат.
-  * [Один объект](#однин-объект)![v1](v1.png) &ensp; `{"result":{}}`
-  * [Список объектов](#список-объектов)![v1](v1.png) &ensp; `{"result":{"items":[]}}`
-* __[`error`](#ошибки)__ — ошибки запроса.
-  * [Общая информация](#ошибки)![v1](v1.png)&ensp; `{"error":{"code":"400", "message":"", "data":{}}}`
-  * [Ошибки в полях](#ошибки)![v2](v2.png)&ensp; `{"error":{"data":{"fields:[]}}}`
+* __[`result`](#response)__ — успешный результат.
+  * [Один объект](#response-one)![v1](v1.png) &ensp; `{"result":{}}`
+  * [Список объектов](#response-list)![v1](v1.png) &ensp; `{"result":{"items":[]}}`
+* __[`error`](#response-error)__ — ошибки запроса.
+  * [Общая информация](#response-error)![v1](v1.png)&ensp; `{"error":{"code":"400", "message":"", "data":{}}}`
+  * [Ошибки в полях](#response-error)![v2](v2.png)&ensp; `{"error":{"data":{"fields:[]}}}`
   
 
-# Запрос
+# Запрос {#request}
 
 Спецификация определяет query параметры запроса для указания что выбрать, с каким 
 условием, сортировокой и ограничением. Параметры опциональные, допускается их переименовывание
@@ -82,7 +81,7 @@ __Ответ__
 GET /objects?fields=name,author(age)&search[author.age]=18;30&sort=-name&limi=10&skip=0&lang=ru
 ```
 
-# `fields`
+# `fields` {#fields}
 
 Структура запрашиваемых данных — названия свойств и отношений объекта, которые нужно получить одним 
 запросом.
@@ -102,12 +101,12 @@ GET /objects?fields=name,author(age)&search[author.age]=18;30&sort=-name&limi=10
 В этом случаи, действительно, одним запросом можно выбрать абсолютно все необходимые данные.
 
 ```
-GET root?fields=users(email,phone), news(title, text), categories(name, rating)
+GET /root?fields=users(email,phone), news(title, text), categories(name, rating)
 ```
 
 Формат параметра `search` позволяет на каждое свойство определить условие выборки (фильтра).
 
-#### `fields =`
+#### `fields =` {#fields-default}
 
 Если параметр `fields` не указан или равен пустой строке, то сервер возвращает минимальный набор 
 данных исходя из своих настроек. Обычно возвращается только идентификатор объекта. 
@@ -120,7 +119,7 @@ GET root?fields=users(email,phone), news(title, text), categories(name, rating)
 }
 ```
 
-#### `fields = *`
+#### `fields = *`  {#fields-all}
 
 Символ `*` указывает на выбор всех непосредственных свойств объекта. С учётом их доступности на 
 сервере. Выборка свойств связанных объектов не выполняется — только их внешние ключи. 
@@ -147,7 +146,7 @@ GET root?fields=users(email,phone), news(title, text), categories(name, rating)
 отношением на объект с типом `file` и идентификатором `23`. Для выборки свойств аватарки нужно их явно 
 указать в `fields`.
 
-#### `fields = prop1, prop2(prop3)`
+#### `fields = prop1, prop2(prop3)`  {#fields-map}
 
 Конкретные свойства объекта указываются через запятую. Допустимы пробелы, переводы строк, табы.
 Для вложенности используются круглые скобки. Идентфикатор объекта возвращается всегда (свойства по
@@ -175,7 +174,7 @@ GET /some/1?fields=name, profile(avatar(url, extension), prop3)
 Если запрашиваемое свойство у объекта отсутствует, то в ответе оно будет с null значением. 
 То есть в любом случаи свойство возвращается.
 
-#### `fields = items(prop), count`
+#### `fields = items(prop), count`  {#fields-list}
 
 Свойства списка. Если сервер возвращает список объектов, то `fields` применяется к каждому объекту списка. 
 Чтобы одним запросом запросить свойства самого списка, например общее количество объектов, 
@@ -213,7 +212,7 @@ GET /some/1?fields=items(name, profile(phone)), count
 Можно реализовать выборку средних, минимальных значений, но чаще функции агрегации реализуются 
 отдельными запросами.
 
-#### `fields = !prop`
+#### `fields = !prop` {#fields-deny}
 
 Исключение свойства. Если у объекта много свойств и только одно из них не требуется возвращать, то 
 вместо перечисления длинного списка возвращаемых свойств с исключением одного, можно применить 
@@ -235,7 +234,7 @@ GET /some/1?fields=*, !name, !profile
 }
 ```
 
-#### `fields = prop(type1:prop1, type2:prop2)`
+#### `fields = prop(type1:prop1, type2:prop2)`  {#fields-types}
 
 Зависимость от типа объекта. В списке запрашиваемых объектов одно и тоже отношение может отличаться 
 типом связанного объекта.
@@ -284,7 +283,7 @@ GET /favorites?fields=relative(user:surname, product:price(value, unit), product
 пользователей с различными свойствами. Уместно применять типизацию в `fields` для выборки 
 исключительных свойств, например, админа или менеджера.
 
-#### `fields = comments(text, children(^))`
+#### `fields = comments(text, children(^))` {#fields-recursive}
 
 Рекурсивные шаблоны. Символом `^` указывается ссылка на перечень полей уровнем выше скобки. 
 Используется для выборки рекурсивных отношений (иерархий). Например, у каждого комментария есть 
@@ -311,7 +310,7 @@ GET /product?fields=title, brand(name, products(title, brand(name, products()))
 GET /product?fields=title, brand(name, products(^^))
 ```
 
-# `search`
+# `search` {#search}
 
 Условие фильтрации запрашиваемых данных. 
 
@@ -329,103 +328,105 @@ GET /product?fields=title, brand(name, products(^^))
 Параметром `search` не определяются все возможные условия, в ином  случаи он станет слишком сложным 
 для использования и интерпретации сервером.
 
-#### `search[prop1] = value`
+#### `search[prop] = value` {#search-eq}
 
 Равенство значению. Строке, числу, дате, булеву. Если сервером не реализуются шаблоны услвоий, то
 в зависомсти от поля и задач проекта, услвоие равенства может быть не строгим, например проверятся 
 вхождение в сроку.
 
-#### `search[prop2] = *value`
+#### `search[prop] = *value` {#search-text-in}
 
 Вхождение в строку с любой позиции.
 
-#### `search[prop3] = ^value`
+#### `search[prop] = ^value` {#search-text-start}
 
 Вхождение в строку от начала. Если строка `value` короче значения свойства, то условие не выполняется.
 
-#### `search[prop4] = ~value`
+#### `search[prop] = ~value` {#search-fulltext}
 
 Полнотекстовый поиск. `value` может иметь дополнительные спец. символы, которые используются 
 поисковым движком. 
 
-#### `search[prop5] = /value/`
+#### `search[prop] = /value/` {#search-regex}
 
 Регулярное выражение. Проверка строкового свойства на соответствие регулярному выражению. 
 
-#### `search[prop6] = !value`
+#### `search[prop] = !value` {#search-not}
 
 Неравенство значению. Для любых типов значений.
 
-#### `search[prop7] = "value-with!~^*<>;|`
+#### `search[prop] = "value-with!~^*<>;|`  {#search-eq-strict}
 
 Равенство значению со спец. символами. Если `value` начинается с двойной кавычки, то последующие 
 спец. символы не интерпретируются. Выполняется условие равенства значению.
 
-#### `search[prop8] = >value`, `search[prop] = <value`
+#### `search[prop] = >value`, `search[prop] = <value`  {#search-more-less}
 
 Больше, меньше указанного значения. Для чисел и дат.
 
-#### `search[prop9] = >>value`, `search[prop] = <<value`
+#### `search[prop] = >>value`, `search[prop] = <<value` {#search-more-less-eq}
 
 Больше или равно, меньше или равно. Так как символ равенства невозможно применить из-за особенностей 
 URL формата, равенство задаётся двойным символом `>>` или `<<`. Для чисел и дат.
 
-#### `search[prop10] = min;max`
+#### `search[prop] = min;max` {#search-range}
 
-Вхождение в диапазон чисел или дат. 
+Вхождение в диапазон чисел или дат. Больше или равно min и меньше или равно max.
 
 ```
-search[price]=100;200  // Цена в диапазоне от 100 до 200 включительно
+GET /products?search[price]=100;200  // Цена в диапазоне от 100 до 200 включительно
 ```
 
-#### `search[prop11] = min~max`
+#### `search[prop] = min~max` {#search-interval}
 
-Вхождение в интервал чисел или дат.
+Вхождение в интервал чисел или дат. Between в выборках - больше min и меньше max.
 
-#### `search[prop12] = !min;max`
+#### `search[prop] = !min;max` {#search-not-range}
 
 Вне диапазона чисел или дат.
 
-#### `search[prop13] = !min~max`
+#### `search[prop] = !min~max` {#search-not-interval}
 
 Вне интервала чисел или дат.
 
-#### `search[prop14] = null`
+#### `search[prop] = null` {#search-null}
 
 Отсутствие свойства или значения у свойства. 
 
-#### `search[prop15] = exp1|exp2`
+#### `search[prop] = exp1|exp2` {#search-or}
 
 Выполнение любого условия. Например, перечисление допустимых значений, шаблонов строк, диапазонов
 чисел и других условий, поддерживаемых сервером.
 
-#### `search[prop16] = exp1&exp2`
+#### `search[prop] = exp1&exp2` {#search-and}
 
 Выполнение всех условий. Имеет смысл для нестрогих условий.
 
 ```
-search[prop16] = *горо&*Москва
+GET /some?search[prop] = *горо&*Москва 
 ```
 
-#### `search[prop17] = !exp1|!exp2`
+#### `search[prop] = !exp1|!exp2` {#search-or-not}
 
 Не выполнение любого условия.
 
-#### `search[prop18] = !exp1&!exp2`
+#### `search[prop] = !exp1&!exp2` {#search-and-not}
 
 Не выполнение всех условий.
 
-#### `search[prop1.prop2] = value`
+#### `search[prop1.prop2] = value` {#search-path}
 
-Условие по вложенному свойству. Например, фильтр статей по названию категории. 
+Условие по вложенному свойству (отношению). Путь на вложенное свойство через точку. 
+Разделение точкой зарезервировано для указания пути на свойство. Формат не обязывает 
+применять путь на свойство, если сервер может по другому именованию постросить условие выборки
+из базы. 
 
-#### `search[prop1..parent.prop3] = value`
+```
+GET /users?search[profile.role.name]=admin // Условие явно по profile.role.name
+GET /users?search[roleName]=admin // Сервер "знает", что условие по profile.role.name
+```
 
-Условие по свойству в неопределенной вложенности. Применяется для выборки по графу. 
-Например, выбрать все подразделы в разделе "Спорт". Выбрать пользоваталей, которые через своих
-друзей имеют связь с неким пользователем. 
-
-#### `search.prop1[prop] = value`
+#### `search.prop1[prop] = value`  {#search-field}
 
 Фильтрация множественного свойства.
 
@@ -437,104 +438,104 @@ search[prop16] = *горо&*Москва
 само свойство у выбранных объектов.
 
 ```
-search.stores[title]=*Magnit  // Магазины отфильтровать по названию - содержат Magnit
+GET /products?search.stores[title]=*Magnit  // Магазины отфильтровать по названию
 ```
 
-# `sort`
+# `sort` {#sort}
 
 Сортировка списков.
 
 > Альтернативные названия: order
 
-#### `sort = prop` 
+#### `sort = prop` {#sort-asc}
 
 Сортировка по одному свойству по возрастанию. Указывается название свойства. Направление 
-сортировки может задавать сервер.
+сортировки может задавать сервер, если не предоставляется выбор.
 
-#### `sort = -prop`
+#### `sort = -prop` {#sort-desc}
 
 Указание направления сортировки. По убыванию (desc) с символом минус `-` перед названием свойства 
 без пробела. По возрастанию (asc) без символа. 
 
-#### `sort = prop1.prop2.prop3`
+#### `sort = prop1.prop2.prop3` {#sort-path}
 
 Сортировка по вложенному свойству (вложенного объекта или отношения). Название свойства указывается 
 через точки в виде пути на него.
 
 ```
-sort = contacts.address.street // сортировка (магазинов) по улице в адресе контактов
+GET /stores?sort=contacts.address.street // сортировка (магазинов) по улице в адресе контактов
 ```
 
-#### `sort = -prop1, prop2`
+#### `sort = -prop1, prop2` {#sort-many}
 
 Сортировка по нескольким свойствам. Названия свойств перечисляются через запятую. 
 Допустимы пробельные символы
 
 ```
-sort = -price,date //Сортировка по убыванию цены и возаратсанию даты
+GET /products?sort=-price,date //Сортировка по убыванию цены и возаратсанию даты
 ```
 
-#### `sort.prop1 = prop2.prop3`
+#### `sort.prop1 = prop2.prop3` {#sort-field}
 
 Сортировка внутри множественного свойства объекта. Название сортируемого свойства указывается
 в названии параметра sort, а по какому полю — в значении.
 
 ```
-sort.stores=title // Список магазинов отсортировать по названию магазинов
+GET /products?sort.stores=title // Свойство магазинов отсортировать по названию магазинов
 ```
 
-# `limit`
+# `limit` {#limit}
 
 Ограничение количества возвращаемых объектов в списке.
 
 > Альтернативные названия: count, size, length
 
-#### `limit =`
+#### `limit =` {#limit-default}
 
 Если параметр `limit` не передан или равен пустой строке, то сервер использует значние по умолчанию
 на своё усмотрение, обычно в пределах 100.
 
-#### `limit = 10`
+#### `limit = 10` {#limit-number}
 
 Ограничение количества целым числом. Сервер должен вернуть не больше указнного количества. 
 Может вернуть меньше.
 
-#### `limit = *`
+#### `limit = *` {#limit-infinity}
 
 Без ограничений выбрать все объекты. Допускается в редких случаях, когда действительно есть
 необходимость гарантировано получить все объекты.
 
-#### `limit.prop = 10`
+#### `limit.prop = 10` {#limit-field}
 
 Ограничение внутри множественного свойства объекта. Название ограничиваемого свойства указывается
 в названии параметра `limit`  через точку.
 
 ```
-limit.comments=10
+GET /aritcles?limit.comments=10
 ```
 
-# `skip`
+# `skip` {#skip}
 
 Позиция, с которой вернуть ограниченное количество объектов в списке.
 По умолчанию `skip` равен нулю, сервер возвращает список начиная с первого объекта.
 
 > Альтернативные названия: offset, seek, position
 
-#### `skip = 10`
+#### `skip = 10` {#skip-number}
 
 Позиция целым числом. Если позиция больше чем общее количество объектов, то сервер вернут ноль
 объектов.
 
-#### `skip.prop = 10`
+#### `skip.prop = 10` {#skip-field}
 
 Сдвиг внутри множественного свойства объекта. Название свойства указывается
 в параметре `skip` через точку.
 
 ```
-skip.comments=10
+GET /aritcles?skip.comments=10
 ```
 
-# `depth`
+# `depth` {#depth}
 
 Ограничение вложенности (глубины) при выборке иерерхических структур или рекурсивных связей.
 Обычно указывается для свойств объекта. Так как вложенная структура образуется выборкой 
@@ -542,12 +543,12 @@ skip.comments=10
 
 > Альтернативные названия: level
 
-#### `depth =`
+#### `depth =` {#depth-default}
 
 Если параметр `depth` не передан или равен пустой строке, то сервер использует значение по умолчанию
 по своему усмотрению. `depth` используется только для [рекурсивных `fields`](#fields--commentstext-children).
 
-#### `depth.prop = 10`
+#### `depth.prop = 10` {#depth-field}
 
 Ограничение максимальной вложенности рекурсивных свойств (связей) целым числом. 
 Название свойства указывается в параметре `depth` через точку.
@@ -557,7 +558,7 @@ _Выбор дерева страниц 2 уровня и комменответ
 GET /pages?depth.chilren=2&depth.comments=4
 ```
 
-#### `depth.prop = *`
+#### `depth.prop = *` {#depth-infinity}
 
 Выбрать всю вложенность рекурсивных свойств объекта. Используется с осторожностью, если есть 
 гарантия незацикленности рекурсивных связей. 
@@ -566,24 +567,24 @@ GET /pages?depth.chilren=2&depth.comments=4
 пользователя и тем самым глубина выборки окажется бесконечной.
 
 
-# `lang`
+# `lang` {#lang}
 
 Параметр языка для мультиязычных свойств. Для выборки объектов со свойствами в нужном языке. 
 По подобию параметра `lang` можно указывать валюту `unit` для цен, версию изменений `ver` и другие.
 
 
-#### `lang =`
+#### `lang =` {#lang-default}
 
 Если параметр `lang` не передан или равен пустой строке, то для мультиязычных свойств используется
 язык по умолчани. Язык по умолчанию может определяться по установкам аккаунта, заголовкам HTTP или 
 иначе.
 
-#### `lang = en`
+#### `lang = en` {#lang-set}
 
 Указание языка для всех мультиязычных свойств объекта. Код языка зависит от специфики проекта. 
 
 ```
-lang=en
+GET /aritcles?lang=en
 ```
 ```json
 {
@@ -591,14 +592,14 @@ lang=en
 }
 ```
 
-#### `lang = *`
+#### `lang = *`  {#lang-all}
 
 Вернуть свойства во всех языках, для которых есть перевод. Стуктура ответа при этом
 зависит от особенностей проекта. Предполагается, что мультиязычные свойства получат дополнительную
 вложенность в виде объекта с ключами, равным кодам языков.
 
 ```
-lang=*
+GET /aritcles?lang=*
 ```
 ```json
 {
@@ -610,25 +611,25 @@ lang=*
 }
 ```
 
-#### `lang = en, ru`
+#### `lang = en, ru` {#lang-enum}
 
 Выбор свойств в указанных языках. Логика аналогична выбору свойств во всех языках.
 
-#### `lang.prop = en`
+#### `lang.prop = en` {#lang-field}
 
 Указание языка для конкретного свойства объекта.
 Название свойства указывается в параметре `lang` через точку.
 
 ```
-lang.stores.title=ru  // язык для заголовка магазинов
+GET /products?lang.stores.title=ru  // язык для заголовка магазинов
 ```
 
-# Ответ
+# Ответ {#response}
 
 Любой ответ от сервера возвращается в JSON. Базовая структура ответа едина для всех запросов.
 
-#### Однин объект
-
+#### Однин объект {#response-one}
+ 
 Запрашиваемый объект или скалярное значение возвращается в свойстве `result`. 
 Это необходимо, чтобы любой ответ сервера был валидным JSON.
 
@@ -638,7 +639,7 @@ lang.stores.title=ru  // язык для заголовка магазинов
 }
 ```
 
-#### Список объектов
+#### Список объектов {#response-list}
 
 Элементы списка возвращаются в свойстве `result.items`. В result могут быть дополнительные данные,
 например общее количество объектов для пагинации или количество страниц с учётом ограничений выборки.
@@ -652,7 +653,7 @@ lang.stores.title=ru  // язык для заголовка магазинов
 }
 ```
 
-#### Ошибки
+#### Ошибки {#response-error}
 
 Поддержка всех HTTP кодов форматом не определется. Достаточно различать успешные 2xx и ошибочные запросы 4xxx
 в соответсвии с логикой проекта.
