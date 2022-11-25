@@ -78,7 +78,7 @@ __Ответ__
 и применение дополнительных. URL запроса любой.
 
 ```
-GET /objects?fields=name,author(age)&search[author.age]=18;30&sort=-name&limi=10&skip=0&lang=ru
+GET /objects?fields=name,author(age)&search[author.age]=18;30&sort=-name&limit=10&skip=0&lang=ru
 ```
 
 # `fields`
